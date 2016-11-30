@@ -1,5 +1,28 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:300i,400,400i');
+
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: 'Raleway', sans-serif;
+  font-size: 18px;
+}
+
+.List {
+  border: 1px dotted #8f8f8f;
+  margin: 1rem auto;
+  max-width: 400px;
+}
+
+ul {
+  list-style: circle;
+  text-align: left;
+}
+
+li:nth-child(even):hover {
+  background: grey;
+}
+
+li:nth-child(odd):hover {
+  background: black;
+  color: green;
 }

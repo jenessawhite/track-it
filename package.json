@@ -2,6 +2,7 @@
   "name": "track-it",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://jenessawhite.github.io/track-it/",
   "devDependencies": {
     "react-scripts": "0.7.0"
   },

@@ -4,6 +4,8 @@ import App from './App';
 import './index.css';
 
 ReactDOM.render(
-  <App />,
+  <App name="Your List Name"
+  inventory={['Your list items...', 'will go...', 'here!'
+  ]}/>,
   document.getElementById('root')
 );
