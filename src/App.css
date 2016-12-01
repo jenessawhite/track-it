@@ -7,7 +7,7 @@
 }
 
 .App-logo {
-  height: 50px;
+  height: 60px;
   fill: #28A4BA;
   color: #29A3BA;
 }
@@ -26,6 +26,9 @@
   width: 25%;
   padding: 0.5rem 1rem;
   margin-right: 2rem;
+  height: 18px;
+  border-radius: 3px;
+  border: 1px solid black;
 }
 
 .btn {
@@ -34,6 +37,9 @@
   background: #000d19;
   color: #f8f8f8;
   border: 1px solid #000d19;
+  border-radius: 3px;
+  font-family: 'Raleway', sans-serif;
+  font-size: 16px;
 }
 
 .btn:hover {
@@ -43,6 +49,17 @@
   transition-duration: 0.2s;
 }
 
+.formName{
+  display: flex;
+  justify-content: center;
+}
+
+.formList{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
 .createdList {
   border: 1px solid #28A4BA;
   align-self: center;
@@ -50,7 +67,7 @@
   margin-bottom: 2rem;
 }
 
-.listItems::after {
-  content: '\f014';
-  margin-left: 2rem;
+.ion-close-circled::before {
+  float: right;
+  margin: 0.5rem 1rem;
 }

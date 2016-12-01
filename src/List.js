@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import './ionicons.css';
+import './App.css';
 
 class List extends Component {
   constructor() {
@@ -13,7 +15,7 @@ class List extends Component {
         <ul>
           {this.props.inventory.map((item, index) => {
             return (
-              <li className="listItems" key={index} onClick={this.props.onListItemClick.bind(this, index)}>{item}</li>
+              <li className="listItems ion-close-circled" key={index} onClick={this.props.onListItemClick.bind(this, index)}>{item}</li>
             )
           })}
         </ul>
