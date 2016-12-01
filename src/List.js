@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './List.css';
 
 class List extends Component {
   constructor() {
@@ -11,15 +10,13 @@ class List extends Component {
   render() {
     return (
       <div>
-        <div className="List">
-          <ul>
-            {this.props.inventory.map((item, index) => {
-              return (
-                <li key={index} onClick={this.props.onListItemClick.bind(this, index)}>{item}</li>
-              )
-            })}
-          </ul>
-        </div>
+        <ul>
+          {this.props.inventory.map((item, index) => {
+            return (
+              <li className="listItems" key={index} onClick={this.props.onListItemClick.bind(this, index)}>{item}</li>
+            )
+          })}
+        </ul>
       </div>
     );
   }

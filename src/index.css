@@ -7,22 +7,36 @@ body {
   font-size: 18px;
 }
 
-.List {
-  border: 1px dotted #8f8f8f;
-  margin: 1rem auto;
-  max-width: 400px;
+.listName{
+  border-bottom: 1px solid black;
 }
 
 ul {
-  list-style: circle;
-  text-align: left;
+  padding: 0;
+  list-style: none;
+  text-align: center;
+}
+
+li{
+  width: 100%;
+  line-height: 2em;
+  border-bottom: 1px solid black;
+}
+
+li:nth-child(even) {
+  background: #7AB0BA;
+}
+
+li:nth-child(odd) {
+  background: white;
+  color: #29A3BA;
 }
 
 li:nth-child(even):hover {
-  background: grey;
+  background: #29A3BA;
 }
 
 li:nth-child(odd):hover {
-  background: black;
-  color: green;
+  background: lightgrey;
+  color: #23626E;
 }

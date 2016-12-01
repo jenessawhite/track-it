@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from './list-purple-icon.svg';
+import logo from './list-black-icon.svg';
 import './App.css';
 import List from './List';
 
@@ -7,44 +7,51 @@ import List from './List';
 class App extends Component {
   constructor(props) {
     super(props);
+    localStorage.setItem("name", this.props.name);
+    var name = localStorage.getItem("name");
+    console.log(name);
     this.state = {
-      name: this.props.name,
+      name: name,
       inventory: this.props.inventory,
-      newListValue: ""
+      newListValue: "",
+      newNameValue: ""
     }
   }
   onNewNameSubmit(e) {
     e.preventDefault();
-    console.log("name submission working!");
+    console.log("New List Name - " + this.state.newNameValue);
     this.setState({
-      name: this.props.name
+      name: this.state.newNameValue,
+      newNameValue: ""
     })
   }
-  onNewNameValue(e) {
+  onNewNameValueChange(e) {
     e.preventDefault();
-    console.log("new name value change working!");
+    this.setState({
+      newNameValue: e.target.value,
+    })
   }
   onNewListItem(e) {
     e.preventDefault();
-    console.log("new list value submission working!");
-    var newInventory = this.state.inventory.concat([this.state.newListValue])
+    console.log("List item added - " +  this.state.newListValue);
+    localStorage.setItem("test", "Hello World!");
+    var test = localStorage.getItem("test");
+    console.log(test);
     this.setState({
-      inventory: newInventory,
+      inventory: this.state.inventory.concat([this.state.newListValue]),
       newListValue: ""
     })
   }
   onNewListValueChange(e) {
     e.preventDefault();
-    console.log("new list value change working!");
     this.setState({
       newListValue: e.target.value,
-    });
+    })
   }
   onListItemClick(index, e) {
-    console.log('hey from app! ' + index);
+    console.log('Deleted item');
     var head = this.state.inventory.slice(0, index);
     var tail = this.state.inventory.slice(index+1, this.state.inventory.length)
-    console.log (head + tail);
     this.setState({
       inventory: head.concat(tail)
     });
@@ -62,7 +69,7 @@ class App extends Component {
             Let's get started! What do you want to name this list?
           </p>
           <form onSubmit={this.onNewNameSubmit.bind(this)}>
-          <input type="text" placeholder="Name of your list" className="App-field" onChange={this.onNewNameValue.bind(this)}/>
+          <input type="text" placeholder="Name of your list" className="App-field" onChange={this.onNewNameValueChange.bind(this)} value={this.state.newNameValue} />
           <input className="btn" type="submit" value="Name it" />
         </form>
         </div>
@@ -76,7 +83,7 @@ class App extends Component {
           </form>
         </div>
         <div className="createdList">
-          <h3>{this.props.name}</h3>
+          <h2 className="listName">{this.state.name}</h2>
           <List title="theirList" inventory={
             this.state.inventory
           } onListItemClick={this.onListItemClick.bind(this)} />
