@@ -1,8 +1,12 @@
 {
-  "main.css": "static/css/main.f63726d6.css",
-  "main.css.map": "static/css/main.f63726d6.css.map",
-  "main.js": "static/js/main.47946303.js",
-  "main.js.map": "static/js/main.47946303.js.map",
+  "main.css": "static/css/main.313bc2d9.css",
+  "main.css.map": "static/css/main.313bc2d9.css.map",
+  "main.js": "static/js/main.2ed524c3.js",
+  "main.js.map": "static/js/main.2ed524c3.js.map",
+  "static/media/ionicons.eot?v=2.0.0": "static/media/ionicons.2c2ae068.eot",
+  "static/media/ionicons.svg?v=2.0.0": "static/media/ionicons.621bd386.svg",
+  "static/media/ionicons.ttf?v=2.0.0": "static/media/ionicons.24712f6c.ttf",
+  "static/media/ionicons.woff?v=2.0.0": "static/media/ionicons.05acfdb5.woff",
   "static/media/list-black-icon.svg": "static/media/list-black-icon.732e607c.svg",
   "static/media/new_year_background.png": "static/media/new_year_background.1ac32e8d.png"
 }
