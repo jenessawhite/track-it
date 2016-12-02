@@ -401,7 +401,8 @@
 
 .ion-close:before { content: "\f12a"; }
 
-.ion-close-circled:before { content: "\f128"; color: black;}
+.ion-close-circled:before { content: "\f128";}
+.ion-close-circled:hover { color: red; cursor: pointer; transition: ease 0.3s;}
 
 .ion-close-round:before { content: "\f129"; }
 

@@ -26,12 +26,14 @@ ul {
 
 li{
   width: 100%;
+  height: 3rem;
   line-height: 2em;
   border-bottom: 1px solid black;
+  text-align: center;
 }
 
 li:nth-child(even) {
-  background: #7AB0BA;
+  background: rgba(122, 176, 186, 0.27);
 }
 
 li:nth-child(odd) {

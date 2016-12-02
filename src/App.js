@@ -19,11 +19,12 @@ class App extends Component {
   }
   onNewNameSubmit(e) {
     e.preventDefault();
-    console.log("New List Name - " + this.state.newNameValue);
+    var newNameValue = this.state.newNameValue
     this.setState({
-      name: this.state.newNameValue,
+      name: newNameValue,
       newNameValue: ""
     })
+    localStorage.setItem('name', newNameValue);
   }
   onNewNameValueChange(e) {
     e.preventDefault();
@@ -33,7 +34,6 @@ class App extends Component {
   }
   onNewListItem(e) {
     e.preventDefault();
-    console.log("List item added - " +  this.state.newListValue);
     var newInventory = this.state.inventory.slice(0).concat([{
       text:this.state.newListValue,
       finished: false,
@@ -53,10 +53,8 @@ class App extends Component {
     })
   }
   onListItemFinishedClick(id, e) {
-    console.log('Finished item', id);
     var newInventory = this.state.inventory.slice(0).map((item)=>{
       if(item.id === id) {
-        console.log(!item.finished);
         return Object.assign(item, {
           finished: !item.finished
         })
@@ -74,7 +72,6 @@ class App extends Component {
     console.log('Priority item', id);
     var newInventory = this.state.inventory.slice(0).map((item)=>{
       if(item.id === id) {
-        console.log(!item.priority);
         return Object.assign(item, {
           priority: !item.priority
         })
@@ -89,10 +86,6 @@ class App extends Component {
     localStorage.setItem('inventory', JSON.stringify(newInventory));
   }
   onListItemDeleteClick(id, e) {
-    console.log('Deleted item');
-    // var head = this.state.inventory.slice(0, index);
-    // var tail = this.state.inventory.slice(index+1, this.state.inventory.length)
-    // var newInventory = head.concat(tail);
     var newInventory = this.state.inventory.filter((item) => {
       return item.id !== id;
     });
