@@ -3,6 +3,7 @@ import uuid from 'uuid/v4';
 import logo from './list-black-icon.svg';
 import './App.css';
 import './index.css';
+import './ionicons.css';
 import List from './List';
 
 

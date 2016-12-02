@@ -5,9 +5,6 @@ import moment from 'moment';
 import uuid from 'uuid/v4';
 import './index.css';
 
-// localStorage.setItem('inventory', JSON.stringify(['Your list items...', 'will go...', 'here!'
-// ]));
-
 console.log(moment().format());
 let lastSeen = JSON.parse(localStorage.getItem('lastSeen'));
 var lastMoment = moment(lastSeen);
