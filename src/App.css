@@ -2,7 +2,6 @@
   text-align: center;
   display: flex;
   flex-direction: column;
-  height: 100vh;
   justify-content: space-between;
 }
 
@@ -18,8 +17,22 @@
   color: #f8f8f8;
 }
 
+.App-content {
+  background: white;
+  border: 2px solid #f5f5f9;
+  margin: 0rem 4rem 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: 0.5px 1px 0.5px rgba(0, 0, 0, 0.2);
+}
+
 .App-intro {
   font-size: large;
+}
+
+.App-insert_text {
+  margin: 2rem;
 }
 
 .App-field {
@@ -29,13 +42,15 @@
   height: 18px;
   border-radius: 3px;
   border: 1px solid black;
+  font-family: 'Raleway', sans-serif;
+  font-size: 13px;
 }
 
 .btn {
   width: 15%;
   padding: 0.5rem 1rem;
   background: #000d19;
-  color: #f8f8f8;
+  color: white;
   border: 1px solid #000d19;
   border-radius: 3px;
   font-family: 'Raleway', sans-serif;
@@ -61,13 +76,75 @@
 }
 
 .createdList {
-  border: 1px solid #28A4BA;
   align-self: center;
-  width: 400px;
+  width: 60%;
   margin-bottom: 2rem;
+  border: 2px solid #e6e6e6;
 }
 
-.ion-close-circled::before {
+.ion-android-star:hover {
+  cursor: pointer;
+}
+
+.ion-android-star::before {
+  float: left;
+  margin: 0.5rem 1rem;
+  font-size: 20px;
+}
+
+.listItems__text:hover {
+  cursor: pointer;
+}
+
+
+.ion-android-done::before {
+  float: right;
+  margin: 0.5rem 0rem;
+}
+
+.ion-android-done:hover {
+  cursor: pointer;
+}
+
+ .ion-close-circled::before {
   float: right;
   margin: 0.5rem 1rem;
+}
+
+.ion-close-circled:hover {
+  color: red;
+  cursor: pointer;
+  transition: ease 0.3s;
+}
+
+@media (max-width:689px) {
+  .App-content {
+  margin: 0 2rem 1rem 2rem;
+  }
+
+  .formName{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .formList{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .App-field {
+    margin: 1rem 0;
+    width: 50%;
+  }
+
+  .btn {
+    width: 55%;
+  }
+
+  .createdList {
+    width: 60%;
+    }
+
 }

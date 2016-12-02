@@ -1,19 +1,16 @@
 import React, { Component } from 'react';
+import uuid from 'uuid/v4';
 import logo from './list-black-icon.svg';
 import './App.css';
 import './index.css';
-import './ionicons.css';
 import List from './List';
 
 
 class App extends Component {
   constructor(props) {
     super(props);
-    localStorage.setItem("name", this.props.name);
-    var name = localStorage.getItem("name");
-    console.log(name);
     this.state = {
-      name: name,
+      name: this.props.name,
       inventory: this.props.inventory,
       newListValue: "",
       newNameValue: ""
@@ -36,13 +33,17 @@ class App extends Component {
   onNewListItem(e) {
     e.preventDefault();
     console.log("List item added - " +  this.state.newListValue);
-    localStorage.setItem("test", "Hello World!");
-    var test = localStorage.getItem("test");
-    console.log(test);
+    var newInventory = this.state.inventory.slice(0).concat([{
+      text:this.state.newListValue,
+      finished: false,
+      priority: false,
+      id: uuid()
+    }]);
     this.setState({
-      inventory: this.state.inventory.concat([this.state.newListValue]),
+      inventory: newInventory,
       newListValue: ""
     })
+    localStorage.setItem('inventory', JSON.stringify(newInventory));
   }
   onNewListValueChange(e) {
     e.preventDefault();
@@ -50,13 +51,55 @@ class App extends Component {
       newListValue: e.target.value,
     })
   }
-  onListItemClick(index, e) {
-    console.log('Deleted item');
-    var head = this.state.inventory.slice(0, index);
-    var tail = this.state.inventory.slice(index+1, this.state.inventory.length)
-    this.setState({
-      inventory: head.concat(tail)
+  onListItemFinishedClick(id, e) {
+    console.log('Finished item', id);
+    var newInventory = this.state.inventory.slice(0).map((item)=>{
+      if(item.id === id) {
+        console.log(!item.finished);
+        return Object.assign(item, {
+          finished: !item.finished
+        })
+      } else {
+        return item;
+      }
     });
+
+    this.setState({
+      inventory: newInventory
+    });
+    localStorage.setItem('inventory', JSON.stringify(newInventory));
+  }
+  onListItemPriorityClick(id, e) {
+    console.log('Priority item', id);
+    var newInventory = this.state.inventory.slice(0).map((item)=>{
+      if(item.id === id) {
+        console.log(!item.priority);
+        return Object.assign(item, {
+          priority: !item.priority
+        })
+      } else {
+        return item;
+      }
+    });
+
+    this.setState({
+      inventory: newInventory
+    });
+    localStorage.setItem('inventory', JSON.stringify(newInventory));
+  }
+  onListItemDeleteClick(id, e) {
+    console.log('Deleted item');
+    // var head = this.state.inventory.slice(0, index);
+    // var tail = this.state.inventory.slice(index+1, this.state.inventory.length)
+    // var newInventory = head.concat(tail);
+    var newInventory = this.state.inventory.filter((item) => {
+      return item.id !== id;
+    });
+
+    this.setState({
+      inventory: newInventory
+    });
+    localStorage.setItem('inventory', JSON.stringify(newInventory));
   }
   render() {
     return (
@@ -66,32 +109,38 @@ class App extends Component {
           <h1>track-it</h1>
           <h4>The best place to track any of your lists!</h4>
         </div>
-        <div className="App-intro">
-          <p className="App-intro_text">
-            Let's get started! What do you want to name this list?
-          </p>
-          <form className="formName" onSubmit={this.onNewNameSubmit.bind(this)}>
-          <input type="text" placeholder="Name of your list" className="App-field" onChange={this.onNewNameValueChange.bind(this)} value={this.state.newNameValue} />
-          <input className="btn" type="submit" value="Name it" />
-        </form>
-        </div>
-        <div className="App-insert">
-          <p className="App-insert_text">
-            Awesome! Let's add something to this list. Go ahead and add something to your list. Then hit 'Add it'!
-          </p>
-          <form className="formList" onSubmit={this.onNewListItem.bind(this)}>
-          <input type="text" placeholder="what do you want to add?" className="App-field" onChange={this.onNewListValueChange.bind(this)} value={this.state.newListValue}/>
-          <input className="btn" type="submit" value="Add it"/>
+        <div className="App-content">
+          <div className="App-intro">
+            <p className="App-intro_text">
+              Let's get started! What do you want to name this list?
+            </p>
+            <form className="formName" onSubmit={this.onNewNameSubmit.bind(this)}>
+            <input type="text" placeholder="Name of your list" className="App-field" onChange={this.onNewNameValueChange.bind(this)} value={this.state.newNameValue} />
+            <input className="btn" type="submit" value="Name it" />
           </form>
+          </div>
+          <div className="App-insert">
+            <p className="App-insert_text">
+              Awesome! Let's add something to this list. Go ahead and add something to your list. Then hit 'Add it'!
+            </p>
+            <form className="formList" onSubmit={this.onNewListItem.bind(this)}>
+            <input type="text" placeholder="what do you want to add?" className="App-field" onChange={this.onNewListValueChange.bind(this)} value={this.state.newListValue}/>
+            <input className="btn" type="submit" value="Add it"/>
+            </form>
+            <p className="App-insert_text">
+              You can also delete your items by pressing the "x". Navigating away the site? No worries your items will be here when you get back (unless you close the browser...so don't do that!)
+            </p>
+          </div>
+          <div className="createdList">
+            <h2 className="listName">{this.state.name}</h2>
+            <List title="theirList" inventory={this.state.inventory}
+              onListItemPriorityClick={this.onListItemPriorityClick.bind(this)} onListItemFinishedClick={this.onListItemFinishedClick.bind(this)} onListItemDeleteClick={this.onListItemDeleteClick.bind(this)} />
+          </div>
           <p className="App-insert_text">
-            You can also delete your items by pressing the "x". Navigating away the site? No worries your items will be here when you get back (unless you close the browser...so don't do that!)
+            If something is priority, simply click the star on the left of the item.
+            <br/>
+            Finished the task? Select the checkbox and high-five yourself for continually amazing us all!
           </p>
-        </div>
-        <div className="createdList">
-          <h2 className="listName">{this.state.name}</h2>
-          <List title="theirList" inventory={
-            this.state.inventory
-          } onListItemClick={this.onListItemClick.bind(this)} />
         </div>
       </div>
     );
